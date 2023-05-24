@@ -1,3 +1,4 @@
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import MyButton from "./MyButton";
 
@@ -39,4 +40,4 @@ const DiaryItem = ({ id, emotion, content, date }) => {
 
 //process.env.PUBLIC_URL -> public directory의 주소
 
-export default DiaryItem;
+export default React.memo(DiaryItem);

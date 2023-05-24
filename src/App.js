@@ -46,50 +46,50 @@ const reducer = (state, action) => {
 export const DiaryStateContext = React.createContext();
 export const DiaryDispatchContext = React.createContext();
 
-// const dummyData = [
-//   {
-//     id: 1,
-//     emotion: 1,
-//     content: "오늘의 일기 1번",
-//     date: 1684805388269
-//   },
-//   {
-//     id: 2,
-//     emotion: 2,
-//     content: "오늘의 일기 2번",
-//     date: 1684805388270
-//   },
-//   {
-//     id: 3,
-//     emotion: 3,
-//     content: "오늘의 일기 3번",
-//     date: 1684805388280
-//   },
-//   {
-//     id: 4,
-//     emotion: 4,
-//     content: "오늘의 일기 4번",
-//     date: 1684805388290
-//   },
-//   {
-//     id: 5,
-//     emotion: 5,
-//     content: "오늘의 일기 5번",
-//     date: 1684805388300
-//   },
-//   {
-//     id: 6,
-//     emotion: 5,
-//     content: "오늘의 일기 6번",
-//     date: 1684805388310
-//   },
-//   {
-//     id: 7,
-//     emotion: 5,
-//     content: "오늘의 일기 7번",
-//     date: 1689907388310
-//   },
-// ]
+const dummyData = [
+  {
+    id: 1,
+    emotion: 1,
+    content: "오늘의 일기 1번",
+    date: 1684805388269
+  },
+  {
+    id: 2,
+    emotion: 2,
+    content: "오늘의 일기 2번",
+    date: 1684805388270
+  },
+  {
+    id: 3,
+    emotion: 3,
+    content: "오늘의 일기 3번",
+    date: 1684805388280
+  },
+  {
+    id: 4,
+    emotion: 4,
+    content: "오늘의 일기 4번",
+    date: 1684805388290
+  },
+  {
+    id: 5,
+    emotion: 5,
+    content: "오늘의 일기 5번",
+    date: 1684805388300
+  },
+  {
+    id: 6,
+    emotion: 5,
+    content: "오늘의 일기 6번",
+    date: 1684805388310
+  },
+  {
+    id: 7,
+    emotion: 5,
+    content: "오늘의 일기 7번",
+    date: 1689907388310
+  },
+]
 
 function App() {
 
@@ -98,14 +98,18 @@ function App() {
 
   useEffect(() => {
     const localData = localStorage.getItem("diary");
-    if(localData) {
+
+    if(JSON.parse(localData) && JSON.parse(localData).length > 0) {
       const diaryList = JSON.parse(localData).sort((a,b) => parseInt(b.id) - parseInt(a.id));
       dataId.current = parseInt(diaryList[0].id) + 1;
-
-      console.log("diaryList",diaryList)
-      console.log("dataId",dataId)
-
       dispatch({type: "INIT", data:diaryList})
+
+    } else {
+      localStorage.setItem("diary", JSON.stringify(dummyData))
+      const diaryList = JSON.parse(localData).sort((a,b) => parseInt(b.id) - parseInt(a.id));
+      dataId.current = parseInt(diaryList[0].id) + 1;
+      dispatch({type: "INIT", data:diaryList})
+
     }
   },[])
 

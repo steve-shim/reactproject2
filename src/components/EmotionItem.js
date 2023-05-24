@@ -1,3 +1,5 @@
+import React from "react";
+
 // 몇 번째 리스트가 선택되었는지 알기 위해서 isSelected을 props로 전달 받는다
 
 const EmotionItem = ({
@@ -19,7 +21,7 @@ const EmotionItem = ({
         </div>
     )
 }
-export default EmotionItem;
+export default React.memo(EmotionItem);
 
 // prop을 a로 받으면 console.log(a) a안에는 객체가 담긴다
 // {emotion_id: 1, emotion_img: '/assets/emotion1.png', emotion_descript: '완전 좋음', onClick: ƒ}
