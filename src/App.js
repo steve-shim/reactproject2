@@ -94,7 +94,7 @@ function App() {
   // dummyData를 data state의 기초값으로 설정한다
   const [data, dispatch] = useReducer(reducer, dummyData);
 
-  const dataId = useRef(0);
+  const dataId = useRef(8);
   console.log(dataId);
   console.log(new Date().getTime())
   //CREATE

@@ -55,7 +55,7 @@ const DiaryList = ({ diaryList }) => {
     const navigate = useNavigate();
     //select의 option value가 select value가 되고 -> sortType의 state가 변한다
     //최신순인지 오래된순인지 기억하기 위해서 state를 활용했다
-    const [sortType, setSortType] = useState("lastest");
+    const [sortType, setSortType] = useState("latest");
     const [filter, setFilter] = useState("all");
 
     //정렬된 리스트를 반환
