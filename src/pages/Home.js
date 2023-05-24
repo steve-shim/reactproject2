@@ -31,12 +31,15 @@ const Home = () => {
                 curDate.getMonth() + 1,
                 0
             ).getTime();
+            console.log("firstDay",new Date(firstDay))
+            console.log("lastDay",new Date(lastDay))
 
             setData(diaryList.filter((it) => firstDay <= it.date && it.date <= lastDay))
         }
     }, [diaryList, curDate]);
 
     useEffect(() => {
+        // [{"id":7,"emotion":5,"content":"오늘의 일기 7번","date":1689907388310}]
         console.log(`data ${JSON.stringify(data)}`);
     }, [data]);
 

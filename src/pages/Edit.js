@@ -15,9 +15,10 @@ const Edit = () => {
 
     const navigate = useNavigate();
     const { id } = useParams();
+    console.log("useParams id:",id)
     const diaryList = useContext(DiaryStateContext);
 
-    //컴포넌트가 마운트 되었을 때 useEffect을 이용해서 데이터를 꺼내옴
+    //Edit 컴포넌트가 마운트 되었을 때 useEffect을 이용해서 데이터를 꺼내옴
     useEffect(() => {
         if (diaryList.length >= 1) {
             const targetDiary = diaryList.find(
@@ -28,6 +29,7 @@ const Edit = () => {
             if (targetDiary) {
                 setOriginData(targetDiary);
             } else {
+                alert("없는 일기입니다")
                 navigate('/', { replace: true });
             }
 

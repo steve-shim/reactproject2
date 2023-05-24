@@ -6,38 +6,14 @@ import EmotionItem from "./EmotionItem";
 import MyButton from "./MyButton";
 import MyHeader from "./MyHeader";
 
-// process.env.PUBLIC_URL : public 디렉토리의 경로를 바로 가져올 수 있는 명령어
-const emotionList = [
-    {
-        emotion_id: 1,
-        emotion_img: process.env.PUBLIC_URL + `/assets/emotion1.png`,
-        emotion_descript: '완전 좋음'
-    },
-    {
-        emotion_id: 2,
-        emotion_img: process.env.PUBLIC_URL + `/assets/emotion2.png`,
-        emotion_descript: '좋음'
-    },
-    {
-        emotion_id: 3,
-        emotion_img: process.env.PUBLIC_URL + `/assets/emotion3.png`,
-        emotion_descript: '그럭저럭'
-    },
-    {
-        emotion_id: 4,
-        emotion_img: process.env.PUBLIC_URL + `/assets/emotion4.png`,
-        emotion_descript: '나쁨'
-    },
-    {
-        emotion_id: 5,
-        emotion_img: process.env.PUBLIC_URL + `/assets/emotion5.png`,
-        emotion_descript: '끔찍함'
-    },
-]
+import { getStringDate } from "../util/date";
+import { emotionList } from "../util/emotion";
 
-const getStringDate = (date) => {
-    return date.toISOString().slice(0, 10); // 2022-07-11T06:01:02.470Z
-}
+// process.env.PUBLIC_URL : public 디렉토리의 경로를 바로 가져올 수 있는 명령어
+
+// const getStringDate = (date) => {
+//     return date.toISOString().slice(0, 10); // 2022-07-11T06:01:02.470Z
+// }
 
 const DiaryEditor = ({ isEdit, originData }) => {
     const contentRef = useRef();

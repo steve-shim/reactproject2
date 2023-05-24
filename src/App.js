@@ -50,45 +50,53 @@ const dummyData = [
     id: 1,
     emotion: 1,
     content: "오늘의 일기 1번",
-    date: 1657436056690
+    date: 1684805388269
   },
   {
     id: 2,
     emotion: 2,
     content: "오늘의 일기 2번",
-    date: 1657436056691
+    date: 1684805388270
   },
   {
     id: 3,
     emotion: 3,
     content: "오늘의 일기 3번",
-    date: 1657436056692
+    date: 1684805388280
   },
   {
     id: 4,
     emotion: 4,
     content: "오늘의 일기 4번",
-    date: 1657436056693
+    date: 1684805388290
   },
   {
     id: 5,
     emotion: 5,
     content: "오늘의 일기 5번",
-    date: 1657436056694
+    date: 1684805388300
   },
   {
     id: 6,
-    emotion: 6,
+    emotion: 5,
     content: "오늘의 일기 6번",
-    date: 1757436056694
+    date: 1684805388310
+  },
+  {
+    id: 7,
+    emotion: 5,
+    content: "오늘의 일기 7번",
+    date: 1689907388310
   },
 ]
 
 function App() {
+  // dummyData를 data state의 기초값으로 설정한다
   const [data, dispatch] = useReducer(reducer, dummyData);
 
   const dataId = useRef(0);
   console.log(dataId);
+  console.log(new Date().getTime())
   //CREATE
   const onCreate = (date, content, emotion) => {
     dispatch({
@@ -132,11 +140,11 @@ function App() {
       >
         <BrowserRouter>
           <div className="App">
-            <RouteTest />  {/* 라우팅 되는 페이지랑 무관하게 항상 보임 CSR(client side rendering) 방식으로 빠르게 페이지 전환가능*/}
+            {/* <RouteTest />  라우팅 되는 페이지랑 무관하게 항상 보임 CSR(client side rendering) 방식으로 빠르게 페이지 전환가능 */}
             <Routes> {/* 페이지 변화할 때 바껴서 보이는 부분*/}
               <Route path="/" element={<Home />} />
               <Route path="/new" element={<New />} />
-              <Route path="/edit" element={<Edit />} />
+              <Route path="/edit/:id" element={<Edit />} />
               <Route path="/diary/:id" element={<Diary />} />
               <Route path="/diary" element={<Diary />} /> {/* diary id가 없는 경우 예외처리*/}
             </Routes>

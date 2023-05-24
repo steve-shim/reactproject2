@@ -15,25 +15,43 @@ const filterOptionList = [
     { value: "bad", name: "안좋은 감정만" },
 ]
 
-
+/**
+ * value prop: ControlMenu 가 렌더링하고 있는 select가 어떤걸 선택하고 있는지
+ * onChange prop: select가 선택하는걸 변화했을 때 바꿀 기능을 하는 함수
+ * optionList: select안에 들어가는 옵션 
+ */
 const ControlMenu = ({ value, onChange, optionList }) => {
+    let optionTemplate = optionList.map((it, idx) => (
+        <option key={idx} value={it.value}>
+            {it.name}
+        </option>
+    ))
+    console.log("optionTemplate",optionTemplate)
     return (
         <select
+            name="steve"
             className="ControlMenu"
             value={value}
-            onChange={(e) => onChange(e.target.value)}
+            onChange={(e) => {
+                console.log("value",value); 
+                console.log("e.target.name",e.target.name); 
+                console.log("e.target.value",e.target.value); 
+                onChange(e.target.value)
+            }}
         >
-            {optionList.map((it, idx) => (
+            {optionTemplate}
+            {/* {optionList.map((it, idx) => (
                 <option key={idx} value={it.value}>
                     {it.name}
                 </option>
-            ))}
+            ))} */}
         </select>
     );
 };
 
 
 const DiaryList = ({ diaryList }) => {
+    //객체로 전달되는 경로로 페이지 이동을 할 수 있다(깜빡임 없이 SPA, CSR방식으로)
     const navigate = useNavigate();
     //select의 option value가 select value가 되고 -> sortType의 state가 변한다
     //최신순인지 오래된순인지 기억하기 위해서 state를 활용했다
@@ -68,7 +86,7 @@ const DiaryList = ({ diaryList }) => {
             filter === 'all' ? copyList : copyList.filter((it) => filterCallBack(it));
 
         const sortedList = filteredList.sort(compare);
-        console.log(sortType)
+        console.log("sortType",sortType,filter, sortedList)
         return sortedList;
     }
 
