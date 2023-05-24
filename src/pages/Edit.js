@@ -18,6 +18,12 @@ const Edit = () => {
     console.log("useParams id:",id)
     const diaryList = useContext(DiaryStateContext);
 
+    useEffect(() => {
+        const titleElement = document.getElementsByTagName("title")[0];
+        titleElement.innerHTML = `감정 일기장 - ${id}번 일기 수정`;
+    })
+
+
     //Edit 컴포넌트가 마운트 되었을 때 useEffect을 이용해서 데이터를 꺼내옴
     useEffect(() => {
         if (diaryList.length >= 1) {
