@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import Diary from "../pages/Diary";
 import MyButton from "./MyButton";
@@ -20,7 +20,7 @@ const filterOptionList = [
  * onChange prop: select가 선택하는걸 변화했을 때 바꿀 기능을 하는 함수
  * optionList: select안에 들어가는 옵션 
  */
-const ControlMenu = ({ value, onChange, optionList }) => {
+const ControlMenu = React.memo(({ value, onChange, optionList }) => {
     let optionTemplate = optionList.map((it, idx) => (
         <option key={idx} value={it.value}>
             {it.name}
@@ -47,7 +47,7 @@ const ControlMenu = ({ value, onChange, optionList }) => {
             ))} */}
         </select>
     );
-};
+});
 
 
 const DiaryList = ({ diaryList }) => {
@@ -57,6 +57,14 @@ const DiaryList = ({ diaryList }) => {
     //최신순인지 오래된순인지 기억하기 위해서 state를 활용했다
     const [sortType, setSortType] = useState("latest");
     const [filter, setFilter] = useState("all");
+
+    // const handleSetSortType = useCallback((sortType) => {
+    //     setSortType(sortType);
+    // },[])
+
+    // const handleSetFilter = useCallback((filter) => {
+    //     setFilter(filter);
+    // },[])
 
     //정렬된 리스트를 반환
     const getProcessedDiaryList = () => {
