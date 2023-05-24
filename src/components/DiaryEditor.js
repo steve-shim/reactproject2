@@ -24,7 +24,7 @@ const DiaryEditor = ({ isEdit, originData }) => {
     //input에 저장되는 숫자를 state로 handling 하기 위함
     const [date, setDate] = useState(getStringDate(new Date()));
 
-    const { onCreate, onEdit } = useContext(DiaryDispatchContext)
+    const { onCreate, onEdit, onRemove } = useContext(DiaryDispatchContext)
     const handleClickEmote = (emotion) => {
         setEmotion(emotion);
     };
@@ -56,6 +56,13 @@ const DiaryEditor = ({ isEdit, originData }) => {
         navigate('/', { replace: true })
     };
 
+    const handleRemove = () => {
+        if(window.confirm("정말 삭제하시겠습니까?")) {
+            onRemove(originData.id);
+            navigate('/', {replace:true})
+        }
+    }
+ 
     //edit 페이지에서 랜더하는 경우에만 로직 동작
     useEffect(() => {
         if (isEdit) {
@@ -70,6 +77,15 @@ const DiaryEditor = ({ isEdit, originData }) => {
             <MyHeader
                 headText={isEdit ? "일기 수정하기" : "새 일기 쓰기"}
                 leftChild={<MyButton text={"< 뒤로가기"} onClick={() => navigate(-1)} />}
+                rightChild={
+                    isEdit && (
+                        <MyButton 
+                            text={"삭제하기"} 
+                            type={"negative"} 
+                            onClick={handleRemove}
+                        />
+                    )
+                }
             />
             <div>
                 <section>
