@@ -15,6 +15,11 @@ const Home = () => {
     const [curDate, setCurDate] = useState(new Date());
     const headText = `${curDate.getFullYear()}년 ${curDate.getMonth() + 1}월`
 
+    useEffect(() => {
+        const titleElement = document.getElementsByTagName("title")[0];
+        titleElement.innerHTML = `감정 일기장`;
+    })
+
     // curDate가 변화하는 순간에만 전체 리스트 diaryList에서 
     // 년도와 월에 해당하는 일기 데이터만 뽑아서 data에 상태변화를 저장한다
     useEffect(() => {
